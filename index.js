@@ -4,6 +4,7 @@ const userModel = require('./model/user')
 const postModel = require('./model/post')
 const db = require('mongoose')
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 const bcrypt = require('bcrypt')
 const express = require('express')
@@ -22,7 +23,7 @@ app.use((req,res,next)=>{
     next()
 })
 
-db.connect("mongodb+srv://Sonutsar:1234@cluster0.fuwi1x9.mongodb.net/").then(()=>{
+db.connect(process.env.mongo_URL).then(()=>{
     console.log("data base connected")
   }).catch((err)=>{
     console.log(err)
